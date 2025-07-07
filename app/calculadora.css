@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&display=swap');
+
+*{
+    font-family: "Oxanium", sans-serif;
+    font-optical-sizing: auto;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #0A0F0D 0%, #0a0f0de5 100%);
+    margin: 0;
+    padding: 0;
+}
+
+.title{
+    position: fixed;
+    font-size: 55px;
+    top: 10px;
+    left: 30px;
+    color: #f3f5ff;
+}
+
+.calculator {
+    width: 320px;
+    background-color: #2c3e50;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+}
+
+.display {
+    background-color: #043565;
+    color: white;
+    padding: 20px;
+    text-align: right;
+    font-size: 2.5em;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.square-root {
+    background-color: #9b59b6;
+    color: white;
+}
+
+.square-root:hover {
+    background-color: #8e44ad;
+}
+
+.previous-operand {
+    font-size: 0.5em;
+    color: rgba(255, 255, 255, 0.7);
+    height: 20px;
+}
+
+.current-operand {
+    margin-top: 10px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+}
+
+button {
+    border: none;
+    padding: 20px;
+    font-size: 1.5em;
+    cursor: pointer;
+    background-color: #ecf0f1;
+    transition: all 0.2s;
+}
+
+button:hover {
+    background-color: #bdc3c7;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.operator {
+    background-color: #FFBA08;
+    color: white;
+}
+
+.operator:hover {
+    background-color: #CC9200;
+}
+
+.clear, .delete {
+    background-color: #D00000;
+    color: white;
+}
+
+.clear:hover, .delete:hover {
+    background-color: #A30000;
+}
+
+.equals {
+    background-color: #2ecc71;
+    color: white;
+    grid-column: span 2;
+}
+
+.equals:hover {
+    background-color: #27ae60;
+}
+
+.span-2 {
+    grid-column: span 2;
+}
