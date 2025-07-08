@@ -42,12 +42,12 @@ body {
     flex-direction: column;
 }
 
-.square-root, .power {
+.square-root, .power, .sign-change {
     background-color: #9b59b6;
     color: white;
 }
 
-.square-root:hover, .power:hover {
+.square-root:hover, .power:hover, .sign-change:hover {
     background-color: #8e44ad;
 }
 
@@ -105,7 +105,7 @@ button:active {
 .equals {
     background-color: #97DB4F;
     color: black;
-    grid-column: span 1;
+    grid-column: span 2;
 }
 
 .equals:hover {

@@ -18,6 +18,15 @@ class Calculator {
         }
     }
 
+    changeSign() {
+        if (this.currentOperand === '0') return;
+        if (this.currentOperand.startsWith('-')) {
+            this.currentOperand = this.currentOperand.substring(1);
+        } else {
+            this.currentOperand = '-' + this.currentOperand;
+        }
+    }
+
     appendNumber(number) {
         if (number === '.' && this.currentOperand.includes('.')) return;
         if (this.currentOperand === '0' && number !== '.') {
@@ -119,11 +128,12 @@ class Calculator {
 }
 
 // Selección de elementos
-const numberButtons = document.querySelectorAll('button:not(.operator):not(.equals):not(.clear):not(.delete)');
+const numberButtons = document.querySelectorAll('button:not(.operator):not(.equals):not(.clear):not(.delete):not(.sign-change)');
 const operatorButtons = document.querySelectorAll('.operator');
 const equalsButton = document.querySelector('.equals');
 const clearButton = document.querySelector('.clear');
 const deleteButton = document.querySelector('.delete');
+const signChangeButton = document.querySelector('.sign-change');
 const previousOperandTextElement = document.getElementById('previous-operand');
 const currentOperandTextElement = document.getElementById('current-operand');
 
@@ -159,6 +169,11 @@ deleteButton.addEventListener('click', () => {
     calculator.updateDisplay();
 });
 
+signChangeButton.addEventListener('click', () => {
+    calculator.changeSign();
+    calculator.updateDisplay();
+});
+
 // Soporte para teclado
 document.addEventListener('keydown', (event) => {
     if (event.key >= '0' && event.key <= '9') {
@@ -187,5 +202,8 @@ document.addEventListener('keydown', (event) => {
         calculator.squareRoot();
     } else if (event.key === 'p' || event.key === 'P') {
         calculator.chooseOperation('^');
-    }
+    } else if (event.key === 's' || event.key === 'S') {
+        calculator.changeSign();
+        calculator.updateDisplay();
+    }   
 });
