@@ -1,10 +1,13 @@
+/* Importación de la fuente Oxanium de Google Fonts*/
 @import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&display=swap');
 
+/* Estilos base para todos los elementos */
 *{
     font-family: "Oxanium", sans-serif;
     font-optical-sizing: auto;
 }
 
+/* Estilos del cuerpo de la página */
 body {
     display: flex;
     justify-content: center;
@@ -15,6 +18,7 @@ body {
     padding: 0;
 }
 
+/* Estilo del título*/
 .title{
     position: fixed;
     font-size: 55px;
@@ -23,6 +27,7 @@ body {
     color: #f3f5ff;
 }
 
+/* Contenedor principal de la calculadora */
 .calculator {
     width: 500px;
     background-color: #002d57;
@@ -31,6 +36,7 @@ body {
     overflow: hidden;
 }
 
+/* Área de visualización de la calculadora */
 .display {
     background-color: #002d57;
     color: white;
@@ -42,31 +48,37 @@ body {
     flex-direction: column;
 }
 
-.percentage, .square-root, .power, .sign-change, .reciprocal {
+/* Estilo para boton +/- */
+.sign-change {
     background-color: #9b59b6;
     color: white;
 }
 
-.percentage:hover, .square-root:hover, .power:hover, .sign-change:hover, .reciprocal:hover {
+/* Efecto hover para botones +/- */
+.sign-change:hover {
     background-color: #8e44ad;
 }
 
+/* Estilo para el operando anterior*/
 .previous-operand {
     font-size: 0.5em;
     color: rgba(255, 255, 255, 0.7);
     height: 20px;
 }
 
+/* Estilo para el operando actual*/
 .current-operand {
     margin-top: 10px;
 }
 
+/* Grid contenedor de los botones */
 .buttons {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 1px;
 }
 
+/* Estilos base para todos los botones */
 button {
     border: none;
     padding: 20px;
@@ -76,51 +88,57 @@ button {
     transition: all 0.2s;
 }
 
+/* Efecto hover para botones normales */
 button:hover {
     background-color: #bdc3c7;
 }
 
+/* Efecto al hacer clic (presionar) */
 button:active {
     transform: scale(0.95);
 }
 
+/* Botones de operadores matemáticos (+, -, ×, ÷) */
 .operator {
     background-color: #2191FB;
     color: white;
 }
 
+/* Efecto hover para operadores */
 .operator:hover {
     background-color: #1c7cd6;
 }
 
+/* Botones de limpiar (C) y borrar (←) */
 .clear, .delete {
     background-color: #D00000;
     color: white;
 }
 
+/* Efecto hover para botones de limpieza */
 .clear:hover, .delete:hover {
     background-color: #A30000;
 }
 
+/* Botón de igual (=) */
 .equals {
     background-color: #97DB4F;
     color: black;
     grid-row: span 2;
 }
 
+/* Efecto hover para el igual */
 .equals:hover {
     background-color: #77b338;
 }
 
-.span-2 {
-    grid-column: span 2;
-}
-
+/* Botón de PI (π) */
 .pi {
     background-color: #9b59b6;
     color: white;
 }
 
+/* Efecto hover para PI */
 .pi:hover {
     background-color: #8e44ad;
 }

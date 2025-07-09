@@ -1,16 +1,20 @@
+// Clase principal de la calculadora
 class Calculator {
+    // Constructor que recibe los elementos HTML para mostrar operandos
     constructor(previousOperandTextElement, currentOperandTextElement) {
         this.previousOperandTextElement = previousOperandTextElement;
         this.currentOperandTextElement = currentOperandTextElement;
-        this.clear();
+        this.clear();// Inicializa la calculadora
     }
 
+    // Limpia todos los valores de la calculadora
     clear() {
         this.currentOperand = '0';
         this.previousOperand = '';
         this.operation = undefined;
     }
 
+    //Elimina el último dígito del operando actual
     delete() {
         this.currentOperand = this.currentOperand.toString().slice(0, -1);
         if (this.currentOperand === '') {
@@ -18,6 +22,7 @@ class Calculator {
         }
     }
 
+    // Cambia el signo del operando actual
     changeSign() {
         if (this.currentOperand === '0') return;
         if (this.currentOperand.startsWith('-')) {
@@ -27,7 +32,9 @@ class Calculator {
         }
     }
 
+    // Añade un número al operando actual
     appendNumber(number) {
+        // Evita múltiples puntos decimales
         if (number === '.' && this.currentOperand.includes('.')) return;
         if (this.currentOperand === '0' && number !== '.') {
             this.currentOperand = number.toString();
@@ -36,6 +43,7 @@ class Calculator {
         }
     }
 
+    // Selecciona una operación a realizar
     chooseOperation(operation) {
         if (this.currentOperand === '') return;
         
@@ -67,6 +75,7 @@ class Calculator {
         this.currentOperand = '';
     }
 
+    // Prepara la operación de potencia
     preparePower() {
         this.operation = '^';
         this.previousOperand = this.currentOperand;
@@ -74,6 +83,7 @@ class Calculator {
         this.updateDisplay();
     }
 
+    // Calcula el porcentaje del operando actual
     calculatePercentage() {
         if (this.currentOperand === '') return;
         
@@ -83,6 +93,7 @@ class Calculator {
         this.updateDisplay();
     }
 
+    // Calcula el recíproco (1/x) del operando actual
     calculateReciprocal() {
         if (this.currentOperand === '' || this.currentOperand === '0') {
             this.currentOperand = 'Error';
@@ -99,12 +110,16 @@ class Calculator {
         this.updateDisplay();
     }
 
+    // Realiza el cálculo basado en la operación seleccionada
     compute() {
         let computation;
         const prev = parseFloat(this.previousOperand);
         const current = parseFloat(this.currentOperand);
+
+        // Verifica que ambos operandos sean números válidos
         if (isNaN(prev) || isNaN(current)) return;
 
+        // Realiza la operación correspondiente
         switch (this.operation) {
             case '+':
                 computation = prev + current;
@@ -125,11 +140,13 @@ class Calculator {
                 return;
         }
 
+        // Actualiza el operando actual con el resultado
         this.currentOperand = computation.toString();
         this.operation = undefined;
         this.previousOperand = '';
     }
 
+    // Calcula la raíz cuadrada del operando actual
     squareRoot() {
         if (this.currentOperand === '') return;
         
@@ -148,6 +165,7 @@ class Calculator {
         this.updateDisplay();
     }
 
+    // Actualiza la visualización en la interfaz
     updateDisplay() {
         this.currentOperandTextElement.innerText = this.currentOperand;
         if (this.operation != null && this.operation !== '√' && this.operation !== '^' && this.operation !== '%' && this.operation !== '1/x') {
@@ -173,9 +191,10 @@ const piButton = document.querySelector('.pi');
 const previousOperandTextElement = document.getElementById('previous-operand');
 const currentOperandTextElement = document.getElementById('current-operand');
 
+// Crea una instancia de la calculadora
 const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement);
 
-// Event Listeners
+// Botones numéricos
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
         calculator.appendNumber(button.innerText);
@@ -183,6 +202,7 @@ numberButtons.forEach(button => {
     });
 });
 
+// Botones de operación
 operatorButtons.forEach(button => {
     button.addEventListener('click', () => {
         calculator.chooseOperation(button.innerText);
@@ -190,31 +210,35 @@ operatorButtons.forEach(button => {
     });
 });
 
+// Botón de igual (=)
 equalsButton.addEventListener('click', () => {
     calculator.compute();
     calculator.updateDisplay();
 });
 
+// Botón de limpiar (C)
 clearButton.addEventListener('click', () => {
     calculator.clear();
     calculator.updateDisplay();
 });
 
+// Botón de borrar (←)
 deleteButton.addEventListener('click', () => {
     calculator.delete();
     calculator.updateDisplay();
 });
 
+// Botón de cambio de signo (+/-)
 signChangeButton.addEventListener('click', () => {
     calculator.changeSign();
     calculator.updateDisplay();
 });
 
+// Botón de PI (π)
 piButton.addEventListener('click', () => {
     calculator.appendNumber(Math.PI.toFixed(8)); // usa solo 8 decimales
     calculator.updateDisplay();
 });
-
 
 // Soporte para teclado
 document.addEventListener('keydown', (event) => {
