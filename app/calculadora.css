@@ -18,13 +18,13 @@ body {
 .title{
     position: fixed;
     font-size: 55px;
-    top: 10px;
+    top: 1px;
     left: 30px;
     color: #f3f5ff;
 }
 
 .calculator {
-    width: 320px;
+    width: 500px;
     background-color: #002d57;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
@@ -42,12 +42,12 @@ body {
     flex-direction: column;
 }
 
-.square-root, .power, .sign-change {
+.percentage, .square-root, .power, .sign-change, .reciprocal {
     background-color: #9b59b6;
     color: white;
 }
 
-.square-root:hover, .power:hover, .sign-change:hover {
+.percentage:hover, .square-root:hover, .power:hover, .sign-change:hover, .reciprocal:hover {
     background-color: #8e44ad;
 }
 
@@ -63,7 +63,7 @@ body {
 
 .buttons {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 1px;
 }
 
@@ -105,7 +105,7 @@ button:active {
 .equals {
     background-color: #97DB4F;
     color: black;
-    grid-column: span 2;
+    grid-row: span 2;
 }
 
 .equals:hover {
@@ -114,4 +114,13 @@ button:active {
 
 .span-2 {
     grid-column: span 2;
+}
+
+.pi {
+    background-color: #9b59b6;
+    color: white;
+}
+
+.pi:hover {
+    background-color: #8e44ad;
 }

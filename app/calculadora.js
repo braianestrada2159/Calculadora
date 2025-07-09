@@ -49,6 +49,16 @@ class Calculator {
             return;
         }
 
+        if (operation === '%') {
+            this.calculatePercentage();
+            return;
+        }
+
+        if (operation === '1/x') {
+            this.calculateReciprocal();
+            return;
+        }
+
         if (this.previousOperand !== '') {
             this.compute();
         }
@@ -61,6 +71,31 @@ class Calculator {
         this.operation = '^';
         this.previousOperand = this.currentOperand;
         this.currentOperand = '';
+        this.updateDisplay();
+    }
+
+    calculatePercentage() {
+        if (this.currentOperand === '') return;
+        
+        const num = parseFloat(this.currentOperand);
+        const percentage = num / 100;
+        this.currentOperand = percentage.toString();
+        this.updateDisplay();
+    }
+
+    calculateReciprocal() {
+        if (this.currentOperand === '' || this.currentOperand === '0') {
+            this.currentOperand = 'Error';
+            setTimeout(() => {
+                this.currentOperand = '0';
+                this.updateDisplay();
+            }, 1000);
+            return;
+        }
+        
+        const num = parseFloat(this.currentOperand);
+        const reciprocal = 1 / num;
+        this.currentOperand = reciprocal.toString();
         this.updateDisplay();
     }
 
@@ -115,7 +150,7 @@ class Calculator {
 
     updateDisplay() {
         this.currentOperandTextElement.innerText = this.currentOperand;
-        if (this.operation != null && this.operation !== '√' && this.operation !== '^') {
+        if (this.operation != null && this.operation !== '√' && this.operation !== '^' && this.operation !== '%' && this.operation !== '1/x') {
             this.previousOperandTextElement.innerText = 
                 `${this.previousOperand} ${this.operation}`;
         } else if (this.operation === '^') {
@@ -128,12 +163,13 @@ class Calculator {
 }
 
 // Selección de elementos
-const numberButtons = document.querySelectorAll('button:not(.operator):not(.equals):not(.clear):not(.delete):not(.sign-change)');
+const numberButtons = document.querySelectorAll('button:not(.operator):not(.equals):not(.clear):not(.delete):not(.sign-change):not(.percentage)');
 const operatorButtons = document.querySelectorAll('.operator');
 const equalsButton = document.querySelector('.equals');
 const clearButton = document.querySelector('.clear');
 const deleteButton = document.querySelector('.delete');
 const signChangeButton = document.querySelector('.sign-change');
+const piButton = document.querySelector('.pi');
 const previousOperandTextElement = document.getElementById('previous-operand');
 const currentOperandTextElement = document.getElementById('current-operand');
 
@@ -174,6 +210,12 @@ signChangeButton.addEventListener('click', () => {
     calculator.updateDisplay();
 });
 
+piButton.addEventListener('click', () => {
+    calculator.appendNumber(Math.PI.toFixed(8)); // usa solo 8 decimales
+    calculator.updateDisplay();
+});
+
+
 // Soporte para teclado
 document.addEventListener('keydown', (event) => {
     if (event.key >= '0' && event.key <= '9') {
@@ -188,6 +230,9 @@ document.addEventListener('keydown', (event) => {
         calculator.updateDisplay();
     } else if (event.key === '^') {
         calculator.chooseOperation('^');
+        calculator.updateDisplay();
+    } else if (event.key === '%') {
+        calculator.chooseOperation('%');
         calculator.updateDisplay();
     } else if (event.key === 'Enter' || event.key === '=') {
         calculator.compute();
@@ -205,5 +250,8 @@ document.addEventListener('keydown', (event) => {
     } else if (event.key === 's' || event.key === 'S') {
         calculator.changeSign();
         calculator.updateDisplay();
-    }   
+    } else if (event.key === 'i' || event.key === 'I') {
+        calculator.chooseOperation('1/x');
+        calculator.updateDisplay();
+    }     
 });
