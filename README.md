@@ -88,5 +88,5 @@ Botones de acción:
 - Hacer versión móvil con diseño adaptativo mejorado
 - Añadir soporte para paréntesis en operaciones complejas
 
-Desarrollado con por Braian Estrada M.
+Desarrollado por Braian Estrada M.
 📧 Contacto: estradamontoya91@gmail.com
