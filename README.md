@@ -60,7 +60,7 @@ Teclas especiales:
 🖥️ Estructura de Archivos
 text
 calculadora/app
-├── calculadora.html             # Estructura principal
+├── index.html                   # Estructura principal
 ├── calculadora.css              # Estilos de la aplicación
 ├── calculadora.js               # Lógica de la calculadora
 └── imagen/                      #Carpeta de iconos
